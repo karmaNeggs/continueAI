@@ -1,0 +1,1 @@
+Compare the following data for inconsistencies such as duplicate names, version conflicts, or missing details. List any issues found with suggested corrections.

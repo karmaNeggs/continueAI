@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    {% if not session.get('openai_api_key') %}
+    <div class="error-message">
+        <p>Please set your OpenAI API key in the <a href="{{ url_for('settings') }}">Settings</a> page.</p>
+    </div>
+    {% endif %}
+
+    {% if not session.get('creator_signature') %}
+    <div class="error-message" id="google-api-error">
+        <p>
+            Please set your Creator signature in the <a href="{{ url_for('settings') }}">Settings</a> page for file signing and auth.
+            <img class="info-icon" src="{{ url_for('static', filename='close.png') }}" alt="Info" onclick="toggleErrorMessage('creator_signature')">          
+                <span class="tooltip-text">Dismiss error!</span>
+        </p>
+    </div>
+    {% endif %}
+
+    <div class="navigation">
+        <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+        <script>
+            function closeApp() {
+                // Call the Python function to close the app via PyWebView's API
+                if (window.pywebview && window.pywebview.api && window.pywebview.api.close_app) {
+                    window.pywebview.api.close_app();
+                } else {
+                    console.error("PyWebView API not available.");
+                }
+            }
+        </script>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='help.png') }}" alt="Help" onclick="window.location.href='{{ url_for('help') }}'">
+            <span class="tooltip-text">Help documentation!</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='home.png') }}" alt="Home" onclick="window.location.href='{{ url_for('home') }}'">
+            <span class="tooltip-text">Home</span>
+        </div>
+
+    </div>
+    <div class="container", style="width: 90%; padding: 2%; padding-top: 2%; ">
+    <h2 class="gradient-text">Guided Handover</h2>
+
+        <div class="handover-container">
+            <!-- Chatbox Section -->
+            <div class="chat-container">
+                
+                <div class="chat-box" id="handover-chat-box">
+                    <!-- Handover chat messages -->
+                </div>
+                <form id="handover-chat-form">
+                    <input type="text" id="handover-chat-input" placeholder="Ask me how! 💬" required> 
+
+                    <div class="tooltip-container">
+                        <img class="nav-icon" src="{{ url_for('static', filename='reset.png') }}" alt="Info" id = "restart-handover-button" onclick="restartHandoverButton">
+                        <span class="tooltip-text">Restart the process!</span>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" style="display: none">Send </button>
+                    </div>
+
+                </form>
+            </div>
+        
+            <!-- File Upload Section -->
+            <div class="upload-container">
+                <h3 class="gradient-text">Upload Supporting Documents</h3>
+                <div class="upload-box" id="handover-drop-zone">
+                    <p class=std-text>Drop PDF, Word, Presentations, google drive links, external URLs here with context</p>
+                    <input type="file" id="handover-upload-files" multiple hidden>
+                    <input type="text" id="handover-link-input" placeholder="Paste a URL here and press Enter" hidden>
+                </div>
+                <ul id="handover-file-list"></ul>
+                <!-- Summarize Files Button -->
+                <label class=std-text for="summarize-files-checkbox">
+                    <input type="checkbox" id="summarize-files-checkbox" name="summarize_file_option" value="yes">&nbsp;&nbsp;Summarize Files <br>
+                    <input type="checkbox" id="summarize-online-files-checkbox" name="summarize_online_file_option" value="yes" disabled>🔒Summarize Links
+                </label>
+
+                <!-- Finish Handover Button -->
+                <button class="complete-handover-button" id="complete-handover-button">Finish Handover Process Now</button>  
+            </div>
+        </div>  
+    </div>
+</body>
+<script>
+    function showLoader() {
+        // Show the loader modal
+        document.getElementById('loader-modal').style.display = 'flex';
+    }
+</script>
+</html>

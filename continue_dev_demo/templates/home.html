@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.continue() - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="navigation">
+        <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+        <script>
+            function closeApp() {
+                // Call the Python function to close the app via PyWebView's API
+                if (window.pywebview && window.pywebview.api && window.pywebview.api.close_app) {
+                    window.pywebview.api.close_app();
+                } else {
+                    console.error("PyWebView API not available.");
+                }
+            }
+        </script>
+
+
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='help.png') }}" alt="Help" onclick="window.location.href='{{ url_for('help') }}'">
+            <span class="tooltip-text">Help documentation!</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='settings.png') }}" alt="Settings" onclick="window.location.href='{{ url_for('settings') }}'">
+            <span class="tooltip-text">Configurations</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="gradient-text" style = "margin-bottom: 1px;">.continue</h1>
+        <br><small class="gradient-text">Seamless Transitions</small>
+        
+        <div class="tiles">
+            <div class="tile" onclick="window.location.href='{{ url_for('handover') }}'">
+                <h4 class="gradient-text" >HANDOVER</h4>
+                <p style = "color:whitesmoke; padding: 20px;">Clean, Structured Documentation🛫<br> Created in a Breeze ❄️🌬️🌨️ </p>
+            </div>
+            <div class="tile" onclick="window.location.href='{{ url_for('onboarding') }}'">
+                <h4 class="gradient-text" >ONBOARD</h4>
+                <p style = "color:whitesmoke; padding: 20px;">Use a Handover 📋 🛬 <br> Get Started on the new Task Fast! ⚡🚀⚡</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

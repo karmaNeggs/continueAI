@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help & How-To</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="navigation">
+        <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+        <script>
+            function closeApp() {
+                // Call the Python function to close the app via PyWebView's API
+                if (window.pywebview && window.pywebview.api && window.pywebview.api.close_app) {
+                    window.pywebview.api.close_app();
+                } else {
+                    console.error("PyWebView API not available.");
+                }
+            }
+        </script>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='settings.png') }}" alt="Settings" onclick="window.location.href='{{ url_for('settings') }}'">
+            <span class="tooltip-text">Configurations</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='home.png') }}" alt="home" onclick="window.location.href='{{ url_for('home') }}'">
+            <span class="tooltip-text">Home</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <button onclick="javascript:history.back()" class="nav-link">← Back</button>
+        <br>
+        <h1 class="gradient-text">Help & How-To</h1>
+
+        <!-- 1: Connect and Go -->
+        <section id="connect-and-go">
+            <h2 class="gradient-text">1: Connect and Go</h2>
+
+            <section id="openai">
+                <h3 class="section-text">How to Get Your OpenAI API Key</h3>
+                <p class="std-text">Contact your organization for an enterprise key, or follow these steps:</p>
+                <ol class="std-text">
+                    <li>Visit the <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI API keys page</a>.</li>
+                    <li>Log in to your OpenAI account or create one if you don’t have an account.</li>
+                    <li>Navigate to the API keys section.</li>
+                    <li>Click on "Create new secret key".</li>
+                    <li>Copy the generated key and paste it into the "OpenAI API key" field in the settings.</li>
+                </ol>
+            </section>
+
+            <section id="claude">
+                <h3 class="section-text">How to Get Your Claude API Key</h3>
+                <p class="std-text">Contact your organization for an enterprise key, or follow these steps:</p>
+                <ol class="std-text">
+                    <li>Visit the <a href="https://claude.ai" target="_blank">Claude AI website</a>.</li>
+                    <li>Log in or create an account.</li>
+                    <li>Navigate to the API access or developer section.</li>
+                    <li>Generate a new API key if available.</li>
+                    <li>Copy the key and paste it into the "Claude API key" field in the settings.</li>
+                </ol>
+            </section>
+
+            <section id="google-docs">
+                <h3 class="section-text">How to Get Your Google Docs API Key</h3>
+                <p class="std-text">Contact your organization for an enterprise key, or follow these steps:</p>
+                <ol class="std-text">
+                    <li>Go to the <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>.</li>
+                    <li>Create a new project or select an existing one.</li>
+                    <li>Navigate to "APIs & Services" → "Credentials".</li>
+                    <li>Click "Create Credentials" and choose "API Key".</li>
+                    <li>Restrict the API key to allow access only to Google Docs if needed.</li>
+                    <li>Copy the API key and paste it into the "Google Docs API key" field in the settings.</li>
+                </ol>
+            </section>
+        </section>
+
+        <!-- 2: How Does it Work -->
+        <section id="how-it-works">
+            <h2 class="gradient-text">2: How Does it Work</h2>
+
+            <section id="handover">
+                <h3 class="section-text">Request Handovers and Project Reports</h3>
+                <p class="std-text">Follow these steps to request handovers:</p>
+                <ul class="std-text">
+                    <li>Generate a requestor token from the settings page.</li>
+                    <li>Share the token with your colleagues or teammates.</li>
+                    <li>Receive the curated handover file from the person handling the project and start onboarding.</li>
+                </ul>
+            </section>
+
+            <section id="create-handovers">
+                <h3 class="section-text">Create Handovers</h3>
+                <p class="std-text">Create detailed reports and share your projects effectively:</p>
+                <ul class="std-text">
+                    <li>Prepare comprehensive task and project reports.</li>
+                    <li>Link offline and online files for easy reference.</li>
+                    <li>Create automated file summaries to save time.</li>
+                    <li>Securely share encrypted files with your team.</li>
+                </ul>
+            </section>
+
+            <section id="onboard">
+                <h3 class="section-text">Onboard with Your Handover File</h3>
+                <p class="std-text">Load your handover file into the app and ask specific questions:</p>
+                <ul class="std-text">
+                    <li>Example question: "Give me a summary of the project."</li>
+                    <li>Example question: "Where are the details about project X?"</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- 3: Title Glossary -->
+        <section id="title-glossary">
+            <h2 class="gradient-text">3: Title Glossary</h2>
+            <p class="std-text">All titles and terms in this document are highlighted in headers with explanations provided inline.</p>
+        </section>
+
+        <!-- 4: Coming Up Next -->
+        <section id="coming-up-next">
+            <h2 class="gradient-text">4: Coming Up Next</h2>
+            <p class="std-text">Expect features like automated workflows, enhanced API integrations, and more.</p>
+        </section>
+
+        <!-- 5: License -->
+        <section id="license">
+            <h2 class="gradient-text">5: License</h2>
+            <p class="std-text">This product is licensed under terms ensuring security and integrity for all users.</p>
+        </section>
+
+        <!-- 6: Slack Webhook -->
+        <section id="slack-webhook">
+            <h3 class="section-text">Integrating Slack Webhooks</h3>
+            <p class="std-text">Automate notifications to your Slack channel by setting up a webhook URL. <a href="https://api.slack.com/messaging/webhooks" target="_blank">Learn more and obtain your URL here.</a></p>
+        </section>
+
+        <!-- FileIo Section -->
+        <section id="file-io">
+            <h3 class="section-text">About File.io</h3>
+            <p class="std-text">File.io offers a simple way to share files via a secure, temporary URL. <a href="https://www.file.io/" target="_blank">Discover more about File.io.</a></p>
+        </section>
+
+        <!-- Creator Signature -->
+        <section id="creator-signature">
+            <h3 class="section-text">Creator Signature</h3>
+            <p class="std-text">Identify your handover with a unique secret code, enhancing security and traceability of your documents.</p>
+        </section>
+
+        <!-- Handover Token -->
+        <section id="handover-token">
+            <h3 class="section-text">Handover Token</h3>
+            <p class="std-text">A secure password that protects your generated files, ensuring that only authorized users can access them.</p>
+        </section>
+
+        <!-- Enterprise Version Features -->
+        <section id="enterprise-version">
+            <h2 class="gradient-text">Enterprise Version Features</h3>
+            <p class="std-text">Upgrade to the Enterprise version for advanced features:</p>
+            <ul class="std-text">
+                <li>Summarize and analyze documents directly from Google Docs and other online platforms.</li>
+                <li>Implement Role-Based Access Control for bulk onboarding and queries.</li>
+                <li>Store and access files using Google Drive, AWS S3 buckets, or Dropbox.</li>
+                <li>Customize roles and prompts to fit your organizational needs perfectly.</li>
+            </ul>
+        </section>
+
+        <!-- Enterprise Version Features -->
+        <section id="attributions-declarations">
+            <h2 class="gradient-text">7: Attributions and Declarations</h2>
+            <h3 class="section-text">Attributions</h3>
+            <p class="std-text">We acknowledge and thank the following sources:</p>
+            <ul class="std-text">
+                <li><a href="https://www.flaticon.com/free-icons/refresh" target="_blank">Refresh icons by HAJICON - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/close" target="_blank">Close icons by HAJICON - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/repair" target="_blank">Repair icons by HAJICON - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/start-button" target="_blank">Start button icons by HAJICON - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/ui" target="_blank">UI icons by HAJICON - Flaticon</a></li>
+                <a href="https://www.flaticon.com/free-icons/gmail" title="gmail icons">Gmail icons created by Freepik - Flaticon</a>
+            </ul>
+
+            <h3 class="section-text">Declarations</h3>
+            <ul class="std-text">
+                <li>Helped by OpenAI ChatGPT. No other developers were harmed during the process.</li>
+            </ul>
+            <h3 class="section-text">Contact</h3>
+            <p class="std-text">Reach us via the following channels:</p>
+            <ul class="std-text">
+                <li>Website: <a href="https://github.com/karmaNeggs?tab=repositories" target="_blank">click to visit website</a>.</li>
+                <li>WHOAMI <a href="https://www.linkedin.com/in/anupam-vashist-av/" target="_blank">Click to visit developer profile</a>.</li>
+                <li>Github project <a href="https://github.com/karmaNeggs?tab=repositories" target="_blank">Checkout my repositories</a>.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

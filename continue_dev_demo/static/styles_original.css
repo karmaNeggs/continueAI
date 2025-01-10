@@ -1,0 +1,478 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    background-image: url('base_5.jpg'); /* Path to the background image */
+    background-size: cover; /* Ensure the image fits within the screen */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+    background-position: center center; /* Center the image */
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 5%;
+    padding-top: 2%;
+    background: #ffffff98;
+    border-radius: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Headings */
+h1, h2, h3 {
+    display: inline-block;
+    color: #4B0082;
+
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #bb05d3, #5500ff); /* Gradient colors */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    font-weight: bold;
+
+}
+
+h4 {
+    color: #fdfbff;
+    font-size: 36px;
+    margin:20px;
+
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="url"], input[type="password"], textarea, select, input[type="file"], input[type="number"] {
+    width: 87%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+input:hover {
+    background-color: #ececec;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 24px;
+    background-color: #4c0082b9;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: #6A0DAD;
+}
+
+
+/* Tiles (Home Page) */
+.tiles {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    
+}
+
+.tile {
+    flex: 1;
+    padding: 40px;
+    background-color: #4c00827f;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tile:hover {
+    background-color: #bb05d36c;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Box (Onboarding Page) */
+.chat-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    height: 300px;
+    overflow-y: scroll;
+    border-radius: 10px;
+    background-color: #f9f9f9a2;
+    margin-top: 20px;
+}
+
+
+/* Ensure messages are block-level elements */
+.user-message, .bot-response {
+    display: inline-block; /* Ensure bubbles are only as wide as their content */
+    clear: both; /* Prevent messages from overlapping */
+    margin-bottom: 12px; /* Add space between each message */
+    max-width: 70%; /* Limit message width for better readability */
+    line-height: 1.5;
+}
+
+/* User message styling */
+.user-message {
+    align-items: left;
+    color: #333;
+    margin: 10px 0;
+    background-color: #E6D7F7;
+    padding: 12px 16px;
+    border-radius: 15px 15px 15px 0;
+    float: left; /* Align user messages to the left */
+    overflow-wrap: break-word;
+}
+
+/* Bot response styling */
+.bot-response {
+    align-items: right;
+    color: #ffffff;
+    margin: 10px 0;
+    background: linear-gradient(to right, #6a0dadd4, #bb05d3d9);
+    padding: 12px 16px;
+    border-radius: 15px 15px 0 15px;
+    float: right; /* Align bot messages to the right */
+    overflow-wrap: break-word;
+}
+
+/* Optional: Add shadow and hover effect for fun */
+.user-message, .bot-response {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-message:hover, .bot-response:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Download Button (Handover Complete Page) */
+button.download-button {
+    padding: 10px 20px;
+    background-color: #4c0082ad;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    
+}
+
+
+button.download-button:hover {
+    background-color: #6A0DAD;
+}
+
+/* Progress Bar (Handover Flow) */
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    height: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 10px;
+    background-color: #4B0082;
+    border-radius: 10px;
+}
+
+/* Error Message Styling */
+.error-message {
+    color: #ffffff;
+    background-color: #b374d4a5;
+    border: 1px solid #8c00cde3;
+    padding-left: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* Icon Containers (Handover Complete Page) */
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    background-color: #ffffff52;
+    padding: 15px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.additional-icons {
+    margin-top: 10px;
+}
+
+/* Icon Styling */
+.icon {
+    width: 70px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+/* Loader Modal */
+.loader-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #4B0082;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Info Icon (Settings Page) */
+.info-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+
+.info-icon:hover {
+    transform: scale(1.3);
+}
+
+.nav-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+
+.nav-icon:hover {
+    transform: scale(1.3);
+}
+
+
+.navigation {
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px; /* Adjust the gap between buttons as needed */
+    position: relative;
+    top: 0px; /* Aligns with the top margin of the page */
+    right: 5%; /* Aligns with the right margin of the page */
+    margin-bottom: 15px;
+}
+
+.navigation .nav-link, .navigation button {
+    background-color: #6A0DAD;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navigation .nav-link:hover, .navigation button:hover {
+    background-color: #4B0082;
+}
+
+
+
+
+
+/* General Styles for Chat Containers */
+.chat-container {
+    padding: 15px;
+    width: 65%;
+    border: 1px solid #ddd;
+    background-color: #ffffffaf;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    
+}
+
+/* Specific Styles for Handover Container */
+.handover-container {
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+
+.handover-chat-box, .chat-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    /* height: 400px; */
+    overflow-y: scroll;
+    border-radius: 10px;
+    background-color: #ffffff32;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2) inset;
+    
+}
+
+.handover-chat-box {
+    margin-bottom: 10px;
+}
+
+.handover-chat-input:hover {
+    background-color: #ececec;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2) inset;
+}
+
+.upload-container {
+    flex: 1;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffffaf;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.upload-box {
+    border: 2px dashed #6A0DAD;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease;
+    height: 200px;
+}
+
+.upload-box:hover {
+    background-color: #ececec;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+#handover-file-list{
+    margin: 5px;
+    padding:1px;
+    text-overflow:clip;
+    overflow-y: auto;
+    word-wrap:break-word;
+}
+
+#handover-file-list li {
+    overflow-y: scroll;
+    justify-content: space-between;
+    margin: 5px 0;
+    font-size: 12px;
+    max-width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Align buttons at opposite ends */
+    align-items: center; /* Vertically align items */
+    padding: 0px; /* Optional: Add padding */
+}
+
+
+.complete-handover-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background-color: #8375758d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.complete-handover-button:hover {
+    background-color: #e31a00df;
+}
+
+
+
+.tooltip-container {
+    position: relative;
+    display: inline-block; /* Ensures the tooltip aligns with the image */
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 120px; /* Adjust the width as needed */
+    background-color: #4c0082b0;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 5px;
+    position: absolute;
+    bottom: 80%; /* Position above the image */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1; /* Make sure it appears above other elements */
+    font-size: 12px;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* General Styles for Project reports */
+
+.project-report-container {
+    background-color: #f9f9ffc0; /* Light background to make text stand out */
+    border: 1px solid #ddd; /* Subtle border for definition */
+    border-radius: 10px; /* Rounded corners for a polished look */
+    padding: 20px; /* Add spacing inside the container */
+    margin: 20px 0; /* Add spacing between this and other elements */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    overflow: auto; /* Add scroll for large content */
+}
+
+.project-report-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px; /* Adjust font size for readability */
+    line-height: 1.5; /* Better line spacing */
+    white-space: pre-wrap; /* Wrap long text lines */
+    color: #333; /* Dark text for better contrast */
+    word-wrap: break-word; /* Break long words */
+}

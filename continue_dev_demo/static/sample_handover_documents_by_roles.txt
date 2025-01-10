@@ -1,0 +1,37 @@
+**Product Manager Handover Sample**
+
+{
+    "projects": [
+        {
+            "project_name": "New Feature Launch",
+            "desc": "Launching a new feature for our main product.",
+            "stakeholders": ["Development Team", "Marketing Team"],
+            "status": "In Progress",
+            "start_date": "2024-01-15",
+            "end_date": "2024-06-30",
+            "user_role": "Product Manager",
+            "online_links": [
+                {
+                    "filename": "Project Plan",
+                    "link": "https://drive.google.com/file/d/12345",
+                    "link_type": "Google Docs",
+                    "description": "Detailed project plan."
+                }
+            ],
+            "offline_files": [
+                {
+                    "filename": "Budget.xlsx",
+                    "link": "",
+                    "link_type": "Excel",
+                    "description": "Project budget."
+                }
+            ],
+            "gotchas": "Potential delays due to third-party integrations.",
+            "timestamps": {
+                "created": "2024-01-10",
+                "passed": "2024-01-15",
+                "edited": "2024-03-20"
+            }
+        }
+    ]
+}

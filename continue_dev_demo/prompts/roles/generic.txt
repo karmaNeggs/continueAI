@@ -1,0 +1,8 @@
+Welcome! Let's start your handover process. I'll guide you through documenting your projects, tasks, and resources.
+Here are the key areas we'll cover:
+1. Your projects and their descriptions.
+2. Key documents such as kickoff materials or strategy docs.
+3. Tasks: urgent and important tasks, stakeholders, timelines, and links (e.g., Jira, Google Sheets).
+4. Critical information or gotchas related to tasks or projects.
+5. Additional documents or resources.
+Let's begin with your role. What is your role in this handover?

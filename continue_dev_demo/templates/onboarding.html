@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.continue() - Onboarding</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <!-- Error messages -->
+
+    {% if not session.get('openai_api_key') %}
+    <div class="error-message">
+        <p>Chat API key not set. Please set your OpenAI API key in the <a href="{{ url_for('settings') }}">Settings</a> page.</p>
+    </div>
+    {% endif %}
+
+    {% if not session.get('creator_signature') %}
+    <div class="error-message" id="google-api-error">
+        <p>
+            Please set your Creator signature in the <a href="{{ url_for('settings') }}">Settings</a> page for file signing and auth.
+            <img class="info-icon" src="{{ url_for('static', filename='close.png') }}" alt="Info" onclick="toggleErrorMessage('creator_signature')">          
+                <span class="tooltip-text">Dismiss error!</span>
+        </p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="navigation">
+        <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+        <script>
+            function closeApp() {
+                // Call the Python function to close the app via PyWebView's API
+                if (window.pywebview && window.pywebview.api && window.pywebview.api.close_app) {
+                    window.pywebview.api.close_app();
+                } else {
+                    console.error("PyWebView API not available.");
+                }
+            }
+        </script>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='help.png') }}" alt="Help" onclick="window.location.href='{{ url_for('help') }}'">
+            <span class="tooltip-text">Help documentation!</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='home.png') }}" alt="Home" onclick="window.location.href='{{ url_for('home') }}'">
+            <span class="tooltip-text">Home</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Navigations -->
+    
+        <h2 class="gradient-text">Onboarding</h2>
+        <form method="POST" enctype="multipart/form-data" id="upload-form">
+            <div class="form-group">
+                <label class=std-text for="handover_files">Upload Handover Files:</label>
+                <input type="file" name="handover_files" id="handover_files" multiple required>
+            </div>
+            <div class="form-group">
+                <label class=std-text for="handover_files_url">Connect Handover Files (🔒 Enterprise only):</label>
+                <input type="file" name="handover_files_url" id="handover_files_url" multiple required disabled>>
+            </div>
+            <div id="token-inputs" class="form-group" style="display: none;">
+                <label>Enter Token(s):</label>
+            </div>
+            <button type="submit" name="action" value="upload" id="load-button">Load Handover</button>
+        </form>
+
+        {% if extracted_files %}
+            <div class="chat-box" id="chat-box">
+                <!-- Chat messages -->
+            </div>
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="👋🏻 Ask me a question... 💬" required>
+
+                <div class="tooltip-container">
+                    <!-- <button id="restart-onboarding-button" class="nav-icon">
+                        <img src="{{ url_for('static', filename='reset.png') }}" alt="Restart Onboarding">
+                    </button> -->
+                    <img class="nav-icon" src="{{ url_for('static', filename='reset.png') }}" alt="Info" id="restart-onboarding-button">
+                    <span class="tooltip-text">Restart the process!</span>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" style="display: none">Send </button>
+                </div>
+            </form>
+
+
+            <form method="POST" action="{{ url_for('onboarding') }}">
+                <!-- <input type="hidden" name="action" value="summarize-onboarding"> -->
+                <button id="summarize-button" class="complete-handover-button">Summarize Handover
+                </button>
+                <button id="summarize-bulk-button" disabled>🔒 Compare handovers
+                </button>
+                <button id="summarize-project-button" disabled>🔒 Project report
+                </button>
+                <!-- <button type="submit" id="summarize-button" class="complete-handover-button">Summarize Handover</button>   -->
+            </form>
+
+            <div class="project-report-container">
+                <h3 class="gradient-text">Downloaded Files</h3>
+                <ul>
+                    {% for file in extracted_files %}
+                        <li><a href="{{ url_for('download_extracted_file', filename=file) }}">{{ file }}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="project-report-container-o"></div>
+            </div>
+            
+        {% endif %}
+    </div>
+</body>
+</html>

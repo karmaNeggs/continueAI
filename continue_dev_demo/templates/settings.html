@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Settings</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <div class="navigation">
+                <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='help.png') }}" alt="Help" onclick="window.location.href='{{ url_for('help') }}'">
+            <span class="tooltip-text">Help documentation!</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='home.png') }}" alt="home" onclick="window.location.href='{{ url_for('home') }}'">
+            <span class="tooltip-text">Home</span>
+        </div>
+    </div>
+    
+    <div class="container">
+
+        <h1 class="gradient-text">Settings</h1>
+        {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <!-- Form for Generating Requestor Token -->
+        <form method="POST">
+            <button type="submit" name="action" value="generate_requestor_token">New Requestor Token</button>
+        </form>
+
+        {% if requestor_token %}
+        <p><small class = "std-text">Your Latest Requestor Token: <strong>{{ requestor_token }}</strong></small></p>
+        {% endif %}
+
+        <!-- Form for Saving Settings -->
+        <form method="POST" enctype="multipart/form-data">
+            <h3 class="gradient-text" style="margin:0px">Sharing Settings</h3>
+            <!-- <small class="std-text"><strong>Connect to your model</strong></small> -->
+            <div class="form-group">
+                <label for="openai_api_key"></label>
+                <input type="text" name="openai_api_key" id="openai_api_key" placeholder="Enter OpenAI API key" value="{{ session.get('openai_api_key', '') }}">
+                <img class="info-icon" src="{{ url_for('static', filename='info_icon.png') }}" alt="Info" onclick="goToHelpSection('openai')">
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="claude_api_key"></label>
+                <input type="text" name="claude_api_key" id="claude_api_key" placeholder="Enter Claude API key">
+                <img class="info-icon" src="{{ url_for('static', filename='info_icon.png') }}" alt="Info" onclick="goToHelpSection('claude')">
+            </div> -->
+            <!-- <small><strong>Connect to Google Docs</strong></small> -->
+            <div class="form-group">
+                <label for="google_api_key"></label>
+                <input type="text" name="google_api_key" id="google_api_key" placeholder="Enter Google Docs API key" value="{{ session.get('google_api_key', '') }}">
+                <img class="info-icon" src="{{ url_for('static', filename='info_icon.png') }}" alt="Info" onclick="goToHelpSection('google-docs')">
+            </div>
+            <!-- <small><strong>Slack webhook URL</strong></small> -->
+            <div class="form-group">
+                <label for="slack_webhook"></label>
+                <input type="text" name="slack_webhook" id="slack_webhook" placeholder="Enter slack_webhook URL" value="{{ session.get('slack_webhook', '') }}">
+                <img class="info-icon" src="{{ url_for('static', filename='info_icon.png') }}" alt="Info" onclick="goToHelpSection('slack_webhook')">
+            </div>
+            <!-- <small><strong>Default folder</strong></small>
+            <div class="form-group">
+                <label for="save_location"></label>
+                <input type="text" name="save_location" id="save_location" placeholder="Default save location e.g., C:/Documents/continue" {% if not session.get('save_location') %} required {% endif %}>>
+            </div> -->
+            <h3 class="gradient-text" style="margin:0px">Auth Configuration Files</h3>
+            <!-- User Credentials -->
+            <!-- <small><strong>Creator signature</strong></small> -->
+            <div class="form-group">
+                <label for="creator_signature"></label>
+                <input type="text" name="creator_signature" id="creator_signature" placeholder="Enter Your name of unique identifier for handovers" value="{{ session.get('creator_signature', '') }}">
+                <img class="info-icon" src="{{ url_for('static', filename='info_icon.png') }}" alt="Info" onclick="goToHelpSection('creator_signature')">
+            </div>
+    
+            <!-- Org Tree -->
+            <!-- <small><strong>Upload Team's Auth File or URI</strong></small> -->
+            <div class="form-group upload-box" style ="width:87%; height:100px" id="auth-drop-zone" >
+                {% if session.get('org_data_filename') %}
+                    <p style = "color:#b1aeae; font-size: 12px">Organization keys: "{{ session.get('org_data_filename') }}"</p>
+                {% else %}
+                    <p>Drop json keys or organization URLs for org-wide access</p>
+                {% endif %}
+                <input type="file" name="org_file" id="org_file" accept=".json" hidden>
+                <input type="url" name="org_url" id="org_url" placeholder="Or paste organization URL and press Enter" hidden>
+            </div>
+
+            <button type="submit" name="action" value="save_settings">Save Settings</button> 
+        </form>
+    </div>
+    <script>
+        function goToHelpSection(sectionId) {
+            window.location.href = '{{ url_for("help") }}#' + sectionId;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+←—depending on role and if role—>
+5. Projects list
+←—for each project—>
+5.1. Project intro
+5.2. project detail
+5.3. check if there is an undetailed next project and Repeat for next project, unless user denies.

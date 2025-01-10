@@ -1,0 +1,10 @@
+Using below sample report as a guide, create a project report based on the provided handover information, within 300 words
+
+-Sample report:
+Hi, I am / we are <mention Creator/s of this file in first person> , the uploaded files are about <mention projects or tasks mentioned in the file> here is a quick summary:
+
+<Summarise briefly, in maximum 300 words, adjust as per required by file details>
+Urgency: High/medium/Low
+Quality: High/medium/Low/Empty
+
+-Handover Information:

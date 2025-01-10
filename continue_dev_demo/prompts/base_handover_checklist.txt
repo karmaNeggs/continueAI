@@ -1,0 +1,6 @@
+<----checklist begin----->
+1. title: user should Define what the user you want to handover, it is the title your handover, and a Must field
+2. handover_request_token: Enter an alphanumeric request token, requested by another user for handover (not a must field)
+3. creator_signature: Enter your (user) name to identify who created it (must field), if not alrady in session
+4. Role: Describes the users association with the task, project or knowledge he is handing over (must field) 
+(Acceptable roles should only be similar to: Product manager, product Analyst, Operations analyst, engineer, technician, generic )

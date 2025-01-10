@@ -1,0 +1,8 @@
+Using below mentioned guide, create a consise and rich summary of the file provided by User during a handover process. within 250 words
+
+What is the file about?
+How is it related to the project context?
+What are key summary points?
+
+File text:
+

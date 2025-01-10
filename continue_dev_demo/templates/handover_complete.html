@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handover Complete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    {% if errors %}
+        <div class="error-messages">
+            <h3>Errors:</h3>
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="navigation">
+        <img class="nav-icon" src="{{ url_for('static', filename='close.png') }}" alt="close" onclick="closeApp()">
+        <script>
+            function closeApp() {
+                // Call the Python function to close the app via PyWebView's API
+                if (window.pywebview && window.pywebview.api && window.pywebview.api.close_app) {
+                    window.pywebview.api.close_app();
+                } else {
+                    console.error("PyWebView API not available.");
+                }
+            }
+        </script>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='help.png') }}" alt="Help" onclick="window.location.href='{{ url_for('help') }}'">
+            <span class="tooltip-text">Help documentation!</span>
+        </div>
+        <div class="tooltip-container">
+            <img class="nav-icon" src="{{ url_for('static', filename='home.png') }}" alt="Home" onclick="window.location.href='{{ url_for('home') }}'">
+            <span class="tooltip-text">Home</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="gradient-text">Handover Complete</h2>
+        {% if error %}
+            <div class="error-message">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+        <small class = "section-text">SAVE password for this handover: <strong>{{ handover_token }}</strong></small>
+
+        <div class="form-group">
+            <label for="filename"></label>
+            <input type="text" name="filename" id="filename" placeholder="Custom Filename: e.g., my_handover.hrcx" required>
+        </div>
+
+        <script>
+            function startDownload() {
+                const filename = document.getElementById('filename').value;
+                if (!filename) {
+                    alert("Please provide a filename");
+                    return;
+                }
+                const downloadUrl = `/download_handover?filename=${encodeURIComponent(filename)}`;
+                document.getElementById('download-link').href = downloadUrl;
+            }
+        </script>
+
+        <!-- Sharing options -->
+        <div class="share-options">
+            
+            <div class="icon-container" id="initial-icons">
+                <h3 class="gradient-text">Save Handover File</h3>
+                
+                <!-- Download -->
+                <a id="download-link" href="#" onclick="startDownload()">
+                    <img class="icon" src="{{ url_for('static', filename='save_icon.png') }}" alt="Download file">
+                </a>
+
+                <!-- Fileio -->
+                <a id="upload-file_io" onclick="uploadToFileio()">
+                    <img class="icon" src="{{ url_for('static', filename='fileio_1.png') }}" alt="Upload to FileIo">
+                </a>
+
+                <!-- Fileio -->
+                <a style="filter: grayscale(1)" id="upload-transfersh" onclick="uploadToTransfersh()">
+                    <img class="icon" src="{{ url_for('static', filename='transfersh_1.png') }}" alt="Upload to transfersh">
+                </a>
+
+                <!-- Google Drive -->
+                <a style="filter: grayscale(1)" id="upload-google-drive" onclick="">
+                    <img class="icon" src="{{ url_for('static', filename='drive_icon_1.png') }}" alt="coming soon">
+                </a>
+
+                <!-- Dropbox -->
+                <a style="filter: grayscale(1)" id="upload-dropbox" onclick="">
+                    <img class="icon" src="{{ url_for('static', filename='dropbox_icon_2.png') }}" alt="coming soon">
+                </a>
+            </div>
+
+
+            <!-- Hidden sharing icons, revealed after link is obtained -->
+            <div class="icon-container additional-icons" id="additional-icons" style="display: none;">
+
+                <div id="shareable-link-container">
+                    <h3 class="gradient-text">Share the Link Now:</h3><br>
+                    <small class="gradient-text" id="shareable-link"></small>
+                </div>
+                <!-- Slack -->
+                <a id="share-slack" onclick="shareToSlack()">
+                    <img class="icon" src="{{ url_for('static', filename='slack_icon.png') }}" alt="Send to Slack"> 
+                </a>
+                <!-- Mail -->
+                <!-- <a id="share-mail" onclick="shareToMail()">
+                    <img class="icon" src="{{ url_for('static', filename='mail_icon.png') }}" target="_blank" alt="Send via Mail">
+                </a> -->
+                <!-- WhatsApp -->
+                <!-- <a id="share-whatsapp" onclick="shareToWhatsApp()">
+                    <img class="icon" src="{{ url_for('static', filename='whatsapp_icon_1.png') }}" target="_blank" alt="Send to WhatsApp">
+                </a> -->
+                <!-- Mail -->
+                <a id="share-mail" href="mailto:?subject=Your%20Handover%20Package&body=Talk%20to%20my%20handover's%20memory:%20{{ shareableLink | urlencode }}" target="_blank">
+                    <img class="icon" src="{{ url_for('static', filename='mail_icon.png') }}" alt="Send via Mail">
+                </a>
+
+                <!-- WhatsApp -->
+                <a id="share-whatsapp" href="https://web.whatsapp.com/send?text=Talk%20to%20my%20handover's%20memory:%20{{ shareableLink | urlencode }}" target="_blank">
+                    <img class="icon" src="{{ url_for('static', filename='whatsapp_icon_1.png') }}" alt="Send to WhatsApp">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

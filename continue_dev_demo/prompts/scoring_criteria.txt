@@ -1,0 +1,5 @@
+Scoring Criteria for Handover:
+- Completeness (40%): Are all required fields and details provided for projects and tasks?
+- Clarity (30%): Are the descriptions clear, concise, and free of ambiguity?
+- Attachment Quality (30%): Are the required documents and links uploaded properly?
+Evaluate the handover based on the above criteria and provide suggestions for improvement.

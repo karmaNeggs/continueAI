@@ -1,0 +1,25 @@
+Scoring Criteria for Handover:
+- Completeness (40%): Are all required fields and details provided for projects and tasks?
+- Clarity (30%): Are the descriptions clear, concise, and free of ambiguity?
+- Attachment Quality (30%): Are the required documents and links uploaded properly?
+Evaluate the handover based on the above criteria and provide suggestions for improvement.
+
+
+
+←—for each project—>
+5.1. Project intro
+5.2. project detail
+5.3. Project intro and detail documents
+5.3.1. Project plan
+5.3.2. Introduction document
+5.3.3. check if there is an undetailed next project and Repeat for next project, unless user denies.
+5.4. Key metrics and data
+5.5. dashboard links
+5.6. Open tasks
+←—for each task—>
+5.6.1. Jira tickets
+5.6.2. Stakeholders
+5.6.3. Task description
+5.6.4. Task documents (PDF, links)
+5.6.5. Open experiments and initiatives
+5.6.7. check if there is an undetailed task and Repeat for next task, unless user denies.
