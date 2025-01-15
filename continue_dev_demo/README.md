@@ -1,1 +1,1 @@
-WIP App to ease handovers between teams
+WIP App to ease handovers between protech teams
